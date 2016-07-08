@@ -1,0 +1,75 @@
+/* partials + variables + responsiveness */
+@import 'partials/colors',
+		'partials/mixins',
+		'partials/helpers';
+
+/* page components */
+@import 'modules/base',
+		'modules/buttons',
+		'modules/card',
+		'modules/cycle-header',
+		'modules/footer',
+		'modules/header',
+		'modules/inputs',
+		'modules/loader',
+		'modules/modals',
+		'modules/navbar';
+
+/* vendor styles */
+@import 'third-party/pushmenu',
+		'third-party/icomoon',
+		'third-party/uikit',
+		'third-party/animate';
+
+/* general page styles */
+body { background: whitesmoke; }
+
+
+/* login modal */
+#submitLogin 
+{
+	@include black-button(13px 0px);
+}
+
+.help-block  
+{
+	color: #333;
+	font-weight: 300;
+	font-size: 12px;
+	letter-spacing: 0.3px;
+	margin: 10px 0;
+	text-align: right;
+
+	.divider 
+	{
+		padding: 0 5px;
+	}
+}
+
+.uk-form-row 
+{
+	position: relative;
+
+	.icon-eye 
+	{
+		right: 10px;
+		font-size: 23px;
+		opacity: 0.4;
+		line-height: 40px;
+		top: 5px;
+		cursor: pointer;
+		position: absolute;
+	}
+}
+
+
+/* article list */
+#articlesList 
+{
+	margin: 0 5%;
+}
+
+
+
+
+

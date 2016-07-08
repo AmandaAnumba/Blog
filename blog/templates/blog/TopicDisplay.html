@@ -1,0 +1,34 @@
+{% extends "blog/_BaseBlogTemplate.html" %}
+
+
+
+{% block addtlContent %}
+	{% if articles %}
+		<div id="articlesList">
+			{% for i in articles %}
+				<article class="article {{ i.article_type }} uk-clearfix">
+					{% if sub == '' %}
+						<a href="{% url 'read' cat=category|lower slug=i.slug %}">
+					{% else %}
+						<a href="{% url 'read' cat=category|lower subcat=sub slug=i.slug %}">
+					{% endif %}
+						<div class="article__image"></div>
+						
+						<div class="article__info">
+							<div class="article__title">{{ i.title }}</div>
+							
+							{% if i.article_type == 'feature' %}
+								<div class="article__description">{{ i.description }}</div>
+							{% endif %}
+
+							<div class="article__details uk-clearfix">
+								<div class="article__author"><span class="italic">by </span> {{ i.author.first_name|escape }} {{ i.author.last_name|escape }}</div>
+								<div class="article__date">{{ i.published_date|date }}</div>
+							</div>
+						</div>
+					</a>
+				</article>
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endblock addtlContent %}

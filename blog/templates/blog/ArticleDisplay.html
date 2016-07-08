@@ -1,0 +1,5 @@
+{% if article.article_type == 'feature' %}
+	{% extends "blog/ArticleDisplay_feature.html" %}
+{% elif article.article_type == 'regular' %}
+	{% extends "blog/ArticleDisplay_regular.html" %}
+{% endif %}

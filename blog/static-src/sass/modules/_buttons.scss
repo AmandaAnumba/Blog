@@ -1,0 +1,14 @@
+@mixin black-button($padding) {
+	-webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+    color: #FFFFFF;
+    font-size: 10px;
+    text-transform: uppercase;
+    line-height: 15px;
+    letter-spacing: 2.5px;
+    padding: $padding;
+    width: 100%;
+    background: #272727;
+    border: 2px solid #272727;
+    outline: 0;
+}

@@ -1,0 +1,67 @@
+{% extends "_BlankPageTemplate.html" %}
+
+
+
+{% block title %}{{ category.name }}{% endblock %}
+
+
+
+{% block head %}
+	<link rel="stylesheet" href="/static/css/blog.css" />
+{% endblock head %}
+
+
+
+{% block content %}
+	<header class="header {{ data.page }}">
+		{% include "partials/Navbar.html" %}
+
+		<section class="header__hero">
+			<div class="hero__background">
+				{% if data.page == 'cycle' %}
+					<div class="uk-cover">
+						<video class="uk-cover-object" width="600" height="400" autoplay="" loop="" muted="">
+							<source src="http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4?test1" type="video/mp4">
+							<source src="http://www.quirksmode.org/html5/videos/big_buck_bunny.ogv?test1" type="video/ogg">
+						</video>
+					</div>
+				{% elif data.page == 'beauty' %}
+					<img src="/static/{{ category.image }}" />
+				{% elif data.page == 'lifestyle' %}
+					<video class="uk-cover-object" width="600" height="400" autoplay="true" loop="true" muted="true">
+						<source src="/static/images/fun.mp4" type="video/mp4">
+					</video>
+				{% endif %}
+			</div>
+			<div id="hero">
+				<div class="hero-content animated fadeInUp">
+					<div class="hero__title">{{ category.name }}</div>
+					<div class="hero__sub-title">{{ category.description }}</div>
+				</div>
+			</div>
+		</section>
+
+		{% if subCategories|length > 0 %}
+			<section class="header__subnav">
+				<ul>
+				{% for sub in subCategories %}
+					<li>
+						<a href="{% url 'subcategory' cat=category.name|lower subcat=sub.name|lower %}">{{ sub.name }}</a>
+					</li>
+				{% endfor %}
+				</ul>
+			</section>
+		{% endif %}
+	</header>
+
+	{% block addtlContent %}{% endblock addtlContent %}
+
+	{% include "partials/Modals.html" %}
+{% endblock content %}
+
+
+
+{% block footer %}{% endblock footer %}
+
+
+

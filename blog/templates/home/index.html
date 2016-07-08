@@ -1,0 +1,157 @@
+{% extends "home/_BaseHomeTemplate.html" %}
+
+
+{% block addtlContent %}
+    <nav id="top-nav">
+        <div class="pull-right">
+            {% if loggedIn %}
+                <p id="mainusername" style="margin-top:10px;">
+                    Welcome <span style='color:#e64c65'>{{ username }}<span>
+                </p>
+                <p><a class="btn logout_btn" href="{% url 'index' %}">Dashboard</a></p>
+                <a class="btn logout_btn" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <p id="login" class="pull-right" onclick="jQuery('#login_modal').modal('show');"><small>Log In</small></p>
+            {% endif %}
+        </div>
+    </nav>
+
+
+    <section id="cycleHeader">
+        <div hidden>
+            <svg width="64" height="64" viewBox="0 0 64 64">
+                <path id="arrow-left-3" d="M44.797 17.28l0.003 29.44-25.6-14.72z" />
+            </svg>
+            <svg width="64" height="64" viewBox="0 0 64 64">
+                <path id="arrow-right-3" d="M19.203 17.28l-0.003 29.44 25.6-14.72z" />
+            </svg>
+        </div>
+
+        <div id="cycle">
+            <a id="currentCycle" class="intro-content animated fadeInUp" href="#">
+                <p id="cycle-count">Current Cycle: 02</p>
+                
+                <h1 id="cycle-title">They Think They <strong>Know</strong></h1>
+                
+                <p class="cycle-description">A healthy identity does not rest on feelings of superiority... Instead, it is seeing oneself as a part of the whole, not the center, and as unique, but not "special".</p>
+                
+                <hr>
+                
+                <p class="cycle-description"><strong>Core Topics: </strong> Cultural identity, competency, and the difference in being a "millennial".</p>
+
+                <nav class="nav-multithumb">
+                    <span class="icon-wrap"><svg class="icon" width="32" height="32" viewBox="0 0 64 64"><use xlink:href="#arrow-right-3"></svg></span>
+                    <div></div>
+                </nav>
+            </a> 
+        </div>
+    </section>
+
+    <nav class="header_navbar">
+        <div class="navbar_inner">
+            <ul class="navbar_menu">
+                <li class="menu_item">
+                    <a href="{% url 'category' cat='beauty' %}">Beauty</a>
+                    <ul class="submenu">
+                        <li><a href="/beauty/hair">Hair</a></li>
+                        <li><a href="/beauty/fashion">Fashion</a></li>
+                        <li><a href="/beauty/body">Body</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu_item">
+                    <a href="{% url 'category' cat='beauty' %}">Career</a>
+                </li>
+
+                <li class="menu_item">
+                    <a href="{% url 'category' cat='beauty' %}">Lifestyle</a>
+                    <ul class="submenu">
+                        <li><a href="/lifestyle/mind">Mind</a></li>
+                        <li><a href="/lifestyle/body">Body</a></li>
+                        <li><a href="/lifestyle/travel">Travel</a></li>
+                        <li><a href="/lifestyle/fooddrink">Food + Drink</a></li>
+                        <li><a href="/lifestyle/spirit">Spirit</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu_item">
+                    <a href="{% url 'category' cat='beauty' %}">Entertainment</a>
+                    <ul class="submenu">
+                        <li><a href="/entertainment/tv">TV</a></li>
+                        <li><a href="/entertainment/music">Music</a></li>
+                        <li><a href="/entertainment/film">Film</a></li>
+                        <li><a href="/entertainment/theater">Theater</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu_item">
+                    <a href="{% url 'category' cat='beauty' %}">Money</a>
+                    <ul class="submenu">
+                        <li><a href="/money/saving">Saving</a></li>
+                        <li><a href="/money/spending">Spending</a></li>
+                        <li><a href="/money/investing">Investing</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu_item">
+                    <a href="{% url 'category' cat='beauty' %}">Wildcard</a>
+                    <!-- <ul class="submenu">
+                        <li><a href="/wildcard/hair">Op-Ed</a></li>
+                        <li><a href="/wildcard/hair">Voices</a></li>
+                        <li><a href="/wildcard/hair">Calm yer Tits, 'Merica</a></li>
+                        <li><a href="/wildcard/hair">Shits 'n Giggles</a></li>
+                    </ul> -->
+                </li>
+            </ul>
+        </div>
+    </nav>
+    </section>
+
+
+    <!-- new and top trending -->
+    <section id="topTrending"></section>
+
+
+    <!-- quick blurb that leads to about page -->
+    <section id="aboutUs">
+    </section>
+
+    <!-- special thanks -->
+    <section id="special" hidden>
+    <h2 id="title">Special thanks to...</h2>
+
+    <div class="clearfix" style="margin:0 auto;">
+        <div id="tech" class="col-xs-3">
+            <p class="top-title">Website Technologies</p>
+            <ul>
+                <li>Tympanus Codrops Tutorials
+                    <ul>
+                        <li>Halcyon Days Layout for about page</li>
+                        <li>Hover Effects</li>
+                        <li>Article Intro Effects</li>
+                        <li>Morphing Search tool</li>
+                    </ul>
+                </li>
+                <li>Site Graphics
+                    <ul>
+                        <li>Halcyon Days Layout for about page</li>
+                        <li>Hover Effects</li>
+                        <li>Morphing Search tool</li>
+                    </ul>
+                </li>
+                <li>Icomoon for font icons</li>
+                <li>SideComments.js for comments style</li>
+            </ul>
+        </div>
+        
+        <div id="content" class="col-xs-3">
+            <p class="top-title">Curated Content</p>
+            <ul>
+                <li>Buzzfeed</li>
+                <li>Huffington Post</li>
+                <li>TED</li>
+            </ul>
+        </div>
+    </div>
+    </section>
+{% endblock addtlContent %}

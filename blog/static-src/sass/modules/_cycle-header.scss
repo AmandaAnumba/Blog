@@ -1,0 +1,155 @@
+#cycle 
+{
+	background: url(/static/images/selfReflection3.jpg) no-repeat;
+    background-position-y: 38%;
+    background-size: 50%;
+    height: 265px;
+    position: relative;
+    color: white;
+    margin: 0 -30px;
+    background-color: black;
+}
+
+a#currentCycle
+{
+	color: white;
+    position: absolute;
+    right: 7%;
+    top: 10%;
+    width: 500px;
+	
+	&:hover
+	{
+		.nav-multithumb
+		{
+    		width: 200px
+		}
+
+		.nav-multithumb .icon-wrap::after 
+		{
+		    width: 200px;
+		    -webkit-transition-delay: 0s;
+		    transition-delay: 0s
+		}
+
+		.nav-multithumb div 
+		{
+		    pointer-events: auto
+		}
+
+		.nav-multithumb div::after 
+		{
+		    opacity: 1;
+		    -webkit-transition-delay: 0.3s;
+		    transition-delay: 0.3s;
+		    -webkit-transform: translateY(0);
+		    transform: translateY(0)
+		}
+	}
+
+	hr 
+	{
+    	border-top: 1px solid $logoHighlightColor;
+	}
+}
+
+#cycle-count 
+{
+    margin-bottom: 10px;
+    font-family: "Noto Serif",sans-serif;
+    letter-spacing: 1.5px;
+    font-size: 14px;
+}
+
+#cycle-title 
+{
+    font-size: 2em;
+    letter-spacing: 1px;
+    font-weight: 300;
+    margin: 10px 0;
+    font-family: $sans-serif !important;
+
+    strong 
+    {
+    	font-family: 'Noto Serif', serif;
+    }
+}
+
+.cycle-description 
+{
+    font-size: 12px;
+    font-weight: 300;
+    font-family: $sans-serif !important;
+    letter-spacing: 0.5px;
+}
+
+.nav-multithumb 
+{
+    width: 60px;
+    height: 50px;
+
+	.icon-wrap 
+	{
+	    position: absolute;
+	    top: 85%;
+	    display: block;
+	    width: 32px;
+	    height: 32px;
+	    -webkit-transform: translateY(-50%);
+	    transform: translateY(-50%);
+	    right: 0;
+	}
+}
+
+.nav-multithumb .icon-wrap::after {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 1px;
+    background: #fff;
+    content: '';
+    -webkit-transition: width 0.3s 0.2s;
+    transition: width 0.3s 0.2s;
+    right: -webkit-calc(100% - 10px);
+    right: calc(100% - 10px);
+}
+
+.nav-multithumb svg.icon {
+    fill: #fff;
+}
+
+.nav-multithumb div {
+    position: absolute;
+    right: 33px;
+    top: 81%;
+    width: 290px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: end;
+    pointer-events: none;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+}
+
+.nav-multithumb div::after {
+    content: 'Browse This Cycle';
+    text-align: right;
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    margin: 19px 0;
+    width: 100%;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-weight: 300;
+    font-size: 0.65em;
+    opacity: 0;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s, opacity 0.4s;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

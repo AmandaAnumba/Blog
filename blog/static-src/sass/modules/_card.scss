@@ -1,0 +1,76 @@
+.article
+{
+	border: 1px solid darken(whitesmoke, 9%);
+	padding: 20px;
+	background: white;
+	color: #555;
+	margin: 8px 0;
+
+	a 
+	{
+		display: block;
+		color: inherit;
+		text-decoration: none;
+		height: 100%;
+	}
+}
+
+
+.article.feature 
+{
+	width: 100%;
+	height: 300px;
+}
+
+.article.regular 
+{
+	width: 500px;
+	height: 175px;
+}
+
+.article__image 
+{
+	width: 165px;
+	height: 165px;
+	border: 1px solid black;
+	float: left;
+}
+
+.article__info 
+{
+	margin-left: 190px;
+}
+.article__title 
+{
+	font-family: 'Lora', serif;
+	font-size: 35px;
+	line-height: 1;
+	margin-bottom: 20px;
+	height: 125px;
+}
+
+.article__details 
+{
+	font-size: 13px;
+	
+	.article__author 
+	{
+		float: left;
+	}
+
+	.italic 
+	{
+		color: #999;
+		font-style: italic;
+		font-family: 'Lora', serif;
+		padding-right: 2px;
+	}
+
+	.article__date
+	{
+		text-align: right;
+	}
+}
+
+
+
