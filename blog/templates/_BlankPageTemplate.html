@@ -10,23 +10,21 @@
 		{%  else %}
 			<title>{% block title %}{% endblock title %}  |  Empire</title>
 		{% endif %}
-
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<meta name="HandheldFriendly" content="true">
-		<meta name="mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		<meta name="apple-mobile-web-app-title" content="Amanda Anumba" />
-		<meta name="theme-color" content="#FFFFFF" />
-		<meta name="msapplication-navbutton-color" content="#FFFFFF" />
-		<meta name="author" content="ThreePillarMedia, LLC" />
-		<meta name="url" content="http://www.empire.life">
-		<meta name="description" content="A community-centric experience built to empower you. Inspire a vision. Rise to the challenge. Reign." />
-		<link rel="icon" href="/static/images/favicon.png">
-		<link rel="apple-touch-icon" href="/static/images/favicon.png" />
-		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Suranna|Lora|Montserrat|Lato:300,400,700,900'/>
-		<script src="/static/js/modernizr.js"></script>
-
+		
+		<meta name="author" content="Amanda Anumba" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="HandheldFriendly" content="true">
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Empire Dashboard" />
+        <meta name="theme-color" content="#FFFFFF" />
+        <meta name="msapplication-navbutton-color" content="#FFFFFF" />
+        <link rel="icon" href="http://media.amandanumba.com/favicon.png" />
+        <link rel="apple-touch-icon" href="http://media.amandanumba.com/favicon.png" />
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Lato:400,300,700|Suranna|Playfair+Display:400,700italic,400italicf' rel='stylesheet' type='text/css' />
+        <script src="{% static 'js/modernizr.js' %}"></script>
+        
 		{% block head %}{% endblock head %}
 
 		{% if data.hasPageCSS %}
@@ -40,35 +38,6 @@
 		</main>
 		
 		<footer>
-			<div id="footer">
-				<div id="side-left" class="pull-left">
-					<div id="logo"></div>
-								
-					<div id="social">
-						<ul>
-							<li id="twitter"><span class="icon-twitter"></span></li>
-							<li id="facebook"><span class="icon-facebook"></span></li>
-							<li id="tumblr"><span class="icon-tumblr"></span></li>
-							<li id="insta"><span class="icon-instagram"></span></li>
-							<li id="mail"><span class="icon-mail"></span></li>
-						</ul>
-					</div>
-				</div>
-				
-				<p id="copyright">© 2015 ThreePillarMedia, LLC</p>
-
-				<nav class="nav-footer">
-					<ul>
-						<li><a href="{% url 'about' %}">About</a></li>
-						<li><a href="{% url 'contact' %}">Contact</a></li>
-						<li><a href="{% url 'terms' %}">Terms</a></li>
-						<li><a href="{% url 'privacy' %}">Privacy</a></li>
-					</ul>
-				</nav>
-
-				<div class="clearfix"></div>
-			</div>
-			
 			<script>var log = {% if data.debug %}true{% else %}false{% endif %};</script>
 			<script src="{% static 'js/main.js' %}"></script>
 

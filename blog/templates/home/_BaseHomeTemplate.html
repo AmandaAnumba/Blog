@@ -2,18 +2,15 @@
 {% load staticfiles %}
 
 
-{# styles #}
 {% block head %}
 	<link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock head %}
 
 
-{# content #}
 {% block content %}
 	
 	{% block addtlContent %}{% endblock addtlContent %}
 
-	{# modals #}
 	<div id="login_modal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -147,10 +144,6 @@
 						<li>
 							<span class="icon-googleplus" onclick="gpluslogin();"></span>
 						</li>
-
-						<!-- <li>
-							{# <a href="{{ url_for('oauth_authorize', provider='twitter') }}"><span class="icon-twitter"></span></a> #}
-						</li> -->
 					</ul>  
 				</div>
 			</div>
