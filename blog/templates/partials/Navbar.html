@@ -1,0 +1,59 @@
+<nav class="header__nav">
+	<div class="uk-grid uk-grid-collapse">
+		<div class="nav__logo uk-width-2-10">
+			<div class="logo">Empire</div>
+		</div>
+
+		<div class="nav__links uk-width-6-10">
+			<ul>
+				<li>
+					<a href="">Home</a>
+				</li>
+				<li>
+					<a href="{% url 'category' cat='cycle' %}">Cycle #{{ data.cycle }}</a>
+				</li>
+				<li>
+					<div data-uk-dropdown="{mode:'hover'}">
+						<a href="">Topics</a>
+						<div class="uk-dropdown uk-dropdown-small">
+							<ul class="uk-nav uk-nav-dropdown">
+								<li><a href="">Profile</a></li>
+								<li><a href="">My Dashboard</a></li>
+								<li><a href="">Edit Subsciptions</a></li>
+								<li class="uk-nav-divider"></li>
+								<li><a href="">Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>Top 10</li>
+				<li>Tips</li>
+				<li>Ask Empire</li>
+				<li>Archives</li>
+			</ul>
+		</div>
+
+		<div class="nav__user uk-width-2-10 uk-text-right">
+			<div class="nav-search"></div>
+			
+			{% if data.loggedIn %}
+				<div data-uk-dropdown="{mode:'hover'}">
+					<a href="">{{ username }}</a>
+					<div class="uk-dropdown uk-dropdown-small">
+						<ul class="uk-nav uk-nav-dropdown">
+							<li><a href="">Profile</a></li>
+							<li><a href="">My Dashboard</a></li>
+							<li><a href="">Edit Subsciptions</a></li>
+							<li class="uk-nav-divider"></li>
+							<li><a href="">Logout</a></li>
+						</ul>
+					</div>
+				</div>
+			{% else %}
+				<div>
+					<a href="#loginModal" data-uk-modal>Log In</a>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</nav>

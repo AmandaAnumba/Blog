@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import views, authenticate, login
+from django.contrib.auth import views, authenticate, login, logout
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
@@ -96,6 +96,7 @@ def subcategory(request, cat, subcat):
         }
     )
 
+
 def read(request, cat, subcat, slug):
     PAGEDATA = {}
     PAGEDATA.update(DATA)
@@ -116,15 +117,43 @@ def read(request, cat, subcat, slug):
         return redirect(category, cat=cat)
 
 
+
+
+
+
+
+
+
+
+# ---------------------------------------
+#       Misc Pages
+# ---------------------------------------
 def index(request):
-    PAGEDATA = {}
-    PAGEDATA.update(DATA)
-    PAGEDATA['page'] = 'home'
-    PAGEDATA['hasPageJS'] = False
+    return redirect(category, cat="cycle")
+
+
+@csrf_protect
+@require_http_methods(["POST"])
+def login_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
     
-    return render(request, 
-    	'home/index.html', 
-    	{
-    		'data': PAGEDATA
-    	}
-    )
+    user = authenticate(username=username, password=password)
+
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            request.session['username'] = username
+            return JsonResponse({ 'success': "success" })
+        else:
+            return JsonResponse({ 'error': "Account disabled"})
+    else:
+        return JsonResponse({ 'error': "Your login information was incorrect. Please try again."})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect(index)
+
+
+

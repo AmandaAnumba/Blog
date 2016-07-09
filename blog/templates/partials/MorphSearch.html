@@ -1,0 +1,35 @@
+<div class="container">
+    <div id="morphsearch" class="morphsearch">
+        <form class="morphsearch-form">
+            <input class="morphsearch-input" type="search" placeholder="Search..."/>
+            <button class="morphsearch-submit" type="submit">Search</button>
+        </form>
+        
+        <div class="morphsearch-content">
+            <div class="dummy-column">
+                <h2>Categories</h2>
+                <a class="dummy-media-object" href="{{ url_for('blog.beauty') }}">
+                    <h3>Beauty</h3>
+                </a>
+                <a class="dummy-media-object" href="{{ url_for('blog.career') }}">
+                    <h3>Career</h3>
+                </a>
+                <a class="dummy-media-object" href="{{ url_for('blog.money') }}">
+                    <h3>Money</h3>
+                </a>
+                <a class="dummy-media-object" href="{{ url_for('blog.entertainment') }}">
+                    <h3>Entertainment</h3>
+                </a>
+                <a class="dummy-media-object" href="{{ url_for('blog.lifestyle') }}">
+                    <h3>Lifestyle</h3>
+                </a>
+                <a class="dummy-media-object" href="{{ url_for('blog.wildcard') }}">
+                    <h3>Wildcard</h3>
+                </a>
+            </div>
+        </div>
+        
+        <span class="morphsearch-close"></span>
+    </div>
+    <div class="overlay"></div>
+</div>
