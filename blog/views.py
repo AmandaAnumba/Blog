@@ -5,17 +5,17 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
 from django.conf import settings
-# from django.db.models import Q
+from django.db.models import Q
 
 import json, time
 
-# from .models import *
+from .models import *
 
 
 
 # Global Variables
 # ------------------
-# CYCLE = Cycle.objects.get(is_current=True)
+CYCLE = Cycle.objects.get(is_current=True)
 DEBUG = settings.DEBUG
 V = '2016-06-04-1350'
 DATA = {
@@ -24,8 +24,8 @@ DATA = {
     'hasPageJS': True,
     'hasPageCSS': True,
     'debug': DEBUG,
-    # 'cycle': CYCLE.number,
-    # 'cycleTitle': CYCLE.title,
+    'cycle': CYCLE.number,
+    'cycleTitle': CYCLE.title,
     'loggedIn': False
 }
 
@@ -38,41 +38,40 @@ def category(request, cat):
     PAGEDATA['hasPageCSS'] = False
 
     if cat == 'cycle':
-        # articles = Article.objects.filter(cycle_article=True).filter(cycle=CYCLE).order_by('-published_date')
-        articles = "test"
+        articles = Article.objects.filter(cycle_article=True).filter(cycle=CYCLE).order_by('-published_date')
         
         return render(request, 
             "blog/CycleDisplay.html", 
             {
                 'data': PAGEDATA,
                 'articles':articles,
-                # 'cycle':CYCLE,
+                'cycle':CYCLE,
                 'sub':''
             }
         )
 
-    # else:
-    #     category = Topic.objects.get(name=cat.title())
+    else:
+        category = Topic.objects.get(name=cat.title())
 
-    #     if category.is_parent:
-    #         subcat = list(category.subcategory.all())
-    #         articles = Article.objects.filter(
-    #                 Q(category__in=subcat) | Q(category=category)
-    #             ).order_by('-published_date').distinct()
-    #     else:
-    #         articles = Article.objects.filter(category=category).order_by('-published_date')
-    #         subcat = []
+        if category.is_parent:
+            subcat = list(category.subcategory.all())
+            articles = Article.objects.filter(
+                    Q(category__in=subcat) | Q(category=category)
+                ).order_by('-published_date').distinct()
+        else:
+            articles = Article.objects.filter(category=category).order_by('-published_date')
+            subcat = []
         
-    #     return render(request, 
-    #         "blog/TopicDisplay.html", 
-    #         {
-    #             'data': PAGEDATA,
-    #             'category': category,
-    #             'subCategories':subcat,
-    #             'articles':articles,
-    #             'sub':''
-    #         }
-    #     )
+        return render(request, 
+            "blog/TopicDisplay.html", 
+            {
+                'data': PAGEDATA,
+                'category': category,
+                'subCategories':subcat,
+                'articles':articles,
+                'sub':''
+            }
+        )
 
 
 def subcategory(request, cat, subcat):
@@ -82,18 +81,18 @@ def subcategory(request, cat, subcat):
     PAGEDATA['hasPageJS'] = False
     PAGEDATA['hasPageCSS'] = False
 
-    # category = Topic.objects.get(name=cat.title())
-    # sub = Topic.objects.get(name=subcat.title())
-    # articles = Article.objects.filter(category=sub).order_by('-published_date')
+    category = Topic.objects.get(name=cat.title())
+    sub = Topic.objects.get(name=subcat.title())
+    articles = Article.objects.filter(category=sub).order_by('-published_date')
         
     return render(request, 
         "blog/TopicDisplay.html", 
         {
             'data': PAGEDATA, 
-            # 'category': category,
-            # 'subCategories':[],
-            # 'articles':articles,
-            # 'sub':subcat
+            'category': category,
+            'subCategories':[],
+            'articles':articles,
+            'sub':subcat
         }
     )
 
