@@ -1,0 +1,164 @@
+@import "../mixins/unstyled-list";
+@import "../modules/dropdown";
+
+/**
+ *  
+ * styles for the header
+ * (replace by push menu on mobile devices)
+ *
+**/
+
+
+$textColor: #333;
+$fontSize: 11px;
+$headerHeight: 50px;
+
+
+/*------------------------------------*\
+    HEADER
+\*------------------------------------*/
+    .header {
+        // background: rgba(255, 255, 255, 0.53);
+        background: white;
+        height: $headerHeight;
+        line-height: $headerHeight;
+        border-bottom: 1px solid #d2d1d1;
+        box-shadow: 0 0px 6px rgba(0,0,0,0.15);
+        color: $textColor;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: $header;
+        padding: 0 30px;
+
+        .space { padding: 0 4px; }
+
+        a { 
+            display: block;
+            color: inherit;
+            font-weight: 300;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+        }
+    }
+    
+    .header__logo span {
+        margin-left: 6px;
+        text-transform: uppercase;
+        font-size: $fontSize;
+        letter-spacing: 1.6px;
+    }
+
+    .header__links > ul:not(.uk-nav) {
+        @include unstyled-list();
+    }
+    
+    .header__actions {
+        @include transition(all 1s ease-in-out);
+        
+        &.search-expanded {
+            width: 60%;
+            float: right;
+            
+            .header__search {
+                border: none;
+                width: 70%;
+
+                i { 
+                    position: absolute;
+                    left: 5px;
+                    top: 50%;
+                    margin: -7px 0;
+                }
+
+                input {
+                    float: right;
+                }
+            }
+        }
+
+        &.search-collapsed .header__search {
+            width: 65px;
+
+            input {
+                width: 0px;
+                padding: 0;
+            }
+        }
+    }
+    
+    #topics {
+        padding: 15px;
+
+        .toggle {
+            
+        }
+    }
+
+    #topicDeets {
+        padding: 15px;
+        background-color: white;
+        
+        .menu {
+            display: none;
+
+            &.open {
+                display: block;
+            }
+        }
+    }
+
+
+
+
+/*------------------------------------*\
+    USER DROPDOWN
+\*------------------------------------*/
+    .header__user {
+        text-align: right;
+
+        a { font-size: $fontSize; }
+    }
+
+
+
+
+/*------------------------------------*\
+    SEARCH
+\*------------------------------------*/
+    .header__search {
+        @include transition(all 1s ease-in-out);
+        border-left: 1px solid darken(whitesmoke, 8%);
+        border-right: 1px solid darken(whitesmoke, 8%);
+        text-align: center;
+        float: left;
+        cursor: pointer;
+        position: relative;
+
+        input {
+            font-family: "Lato", Arial, sans-serif;
+        }
+    }
+
+
+
+
+/*------------------------------------*\
+    RESPONSIVENESS
+\*------------------------------------*/
+    @media only screen
+    and (max-width : 768px) {
+        
+    }
+
+    @media only screen
+    and (max-width : 480px) {
+        .header__logo { margin-left: 25px; }
+    }
+
+
+

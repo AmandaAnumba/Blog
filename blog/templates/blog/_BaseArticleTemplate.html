@@ -1,0 +1,34 @@
+{% extends "_BlankPageTemplate.html" %}
+
+
+{% block title %}{{ article.title }}{% endblock %}
+
+
+
+{% block head %}
+    <meta name="description" content="{{ article.description }}" />
+{% endblock head %}
+
+
+
+{% block content %}
+	<header>
+        {% include "partials/Header.html" %}
+    </header>
+	
+	<main data-ng-controller="ArticleController as article">
+		{% block addtlContent %}{% endblock addtlContent %}
+
+		{% include "partials/LoginModal.html" %}
+	</main>
+{% endblock content %}
+
+
+
+{% block footer %}
+	<script src="/static/js/third-party/side-comments.js"></script>
+	<script>window.SideComments = require('side-comments');</script>
+{% endblock footer %}
+
+
+

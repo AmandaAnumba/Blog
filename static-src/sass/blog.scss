@@ -1,0 +1,47 @@
+/* vendor styles */
+@import 'https://fonts.googleapis.com/css?family=Lato:300,400,700|Lora|Suranna';
+@import 'third-party/pushmenu';
+@import 'third-party/uikit';
+@import 'third-party/animate';
+@import 'third-party/icomoon/style';
+
+/* mixins */
+@import 'mixins/clearfix';
+
+/* partials + variables + responsiveness */
+@import 'partials/variables';
+@import 'partials/colors';
+@import 'partials/helpers';
+
+/* page components */
+@import 'modules/base';
+@import 'modules/button';
+@import 'modules/card';
+@import 'modules/cycle-header';
+@import 'modules/footer';
+@import 'modules/header';
+@import 'modules/hero';
+@import 'modules/loader';
+@import 'modules/modals';
+
+
+/* general page styles */
+body { background: whitesmoke; }
+
+
+/* article list */
+#packery {
+	height: 500px;
+	overflow-y: hidden;
+	padding: 6px;
+	visibility: hidden;
+
+	&.initalized {
+		visibility: visible;
+	}
+}
+
+#articlesList {
+	overflow-x: scroll;
+	height: inherit;
+}

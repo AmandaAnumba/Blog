@@ -23,18 +23,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-x = os.environ['DEBUG']
-if x == 'True':
-    DEBUG = True
-else:
-    DEBUG = False
-    # CSRF_COOKIE_SECURE = True
-    # CSRF_COOKIE_HTTPONLY = True
-    # SESSION_COOKIE_SECURE = True
-    # X_FRAME_OPTIONS = 'DENY'
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+DEBUG = os.environ.get('DEBUG', False)
+CSRF_COOKIE_HTTPONLY = True
 ALLOWED_HOSTS = ['*']
+X_FRAME_OPTIONS = 'DENY'
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
+# SECURE_HSTS_SECONDS = 3600
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 
 # Application definition
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -123,6 +124,21 @@ AUTH_PASSWORD_VALIDATORS = [
 LOGIN_URL = "/"
 LOGIN_REDIRECT_URL = "/home/"
 
+
+
+# Sending emails
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = os.environ.get('SEND_EMAILS_AS', '')
+SERVER_EMAIL = os.environ.get('SEND_EMAILS_AS', '')
+EMAIL_HOST = os.environ.get('GMAIL_EMAIL_HOST', '')
+EMAIL_PORT = os.environ.get('GMAIL_EMAIL_PORT', '')
+EMAIL_HOST_USER = os.environ.get('GMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('GMAIL_HOST_PASSWORD', '')
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -133,16 +149,17 @@ USE_L10N = True
 USE_TZ = False
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'blog/static'),
+   os.path.join(BASE_DIR, "static"),
 )
 
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+

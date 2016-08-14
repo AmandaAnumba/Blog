@@ -1,0 +1,131 @@
+/* vendor styles */
+@import 'https://fonts.googleapis.com/css?family=Lato:300,400|Lora:400,700|Suranna';
+@import 'third-party/uikit';
+@import 'third-party/animate';
+@import 'third-party/froala';
+@import 'third-party/side-comments';
+@import 'third-party/icomoon/style';
+
+/* mixins */
+@import 'mixins/clearfix';
+
+/* partials + variables + responsiveness */
+@import 'partials/variables';
+@import 'partials/colors';
+@import 'partials/helpers';
+
+/* page components */
+@import 'modules/base';
+@import 'modules/button';
+@import 'modules/footer';
+@import 'modules/header';
+@import 'modules/loader';
+@import 'modules/modals';
+
+
+main {
+	width: 67%;
+	margin: 0 auto;
+}
+
+.article__header {
+	padding: 15% 0 20px;
+	text-align: center;
+}
+
+.article__category {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 1.2px;
+}
+
+.article__title {
+	font-size: 4em;
+	font-weight: 900;
+	font-style: italic;
+	font-family: 'Suranna', serif;
+	margin: 10px 0;
+	line-height: 1;
+}
+
+.article__description {
+	letter-spacing: 0.3px;
+	font-size: 16px;
+}
+
+.article__author {
+	@include clearfix();
+}
+
+.article__image {
+	margin-top: 15px;
+
+	img {
+		height: 350px;
+	}
+}
+
+.article__info {
+	border: 1px solid #e6e6e6;
+	border-radius: 3px;
+	padding: 12px;
+	position: relative;
+	margin-bottom: 15px;
+}
+
+.avatar {
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	overflow: hidden;
+	float: left;
+}
+
+.bio {
+	float: left;
+	margin-left: 20px;
+}
+
+.name {
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.image-credit {
+	font-size: 12px;
+	letter-spacing: 0.4px;
+	color: #999;
+}
+
+article {
+	p:nth-child(1):first-letter {
+		font-weight: bold;
+		float: left;
+		font-size: 100px;
+		line-height: 80px;
+		padding-right: 12px;
+		font-weight: bold;
+	}
+
+	p {
+		margin: 1.3em 0;
+	}
+
+	*:not(.side-comment) {
+		font-family: 'Lora', serif;
+		line-height: 27px;
+		font-size: 17px;
+	}
+
+	span > a:not(.marker) {
+		outline: 0;
+		color: #696969;
+		text-decoration: none;
+		border-bottom: 1px dotted black;
+	}
+}
+
+
+
+
+

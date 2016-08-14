@@ -1,6 +1,28 @@
 {% extends "blog/_BaseBlogTemplate.html" %}
 
 
+{% block cycleHeader %}
+	<section class="header__hero">
+		<div class="hero__background">
+			<img src="{{ feature.feature_image }}" />
+		</div>
+		<div id="hero">
+			<div class="hero-content animated fadeInUp">
+				<div class="hero__title">{{ feature.title }}</div>
+				<div class="hero__sub-title">{{ feature.description }}</div>
+				<div class="hero__info">
+					<div class="avatar">
+						<img src="{{ feature.author.avatar }}" />
+					</div>
+					<div class="author">
+						<p>{{ feature.author.first_name }} {{ feature.author.last_name }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock cycleHeader %}
+
 
 {% block addtlContent %}
 	{% if articles %}

@@ -1,0 +1,29 @@
+/**
+ *  
+ * styles overrides for uikit modal
+ *
+**/
+
+.uk-dropdown-bottom {
+    margin-top: 0px;
+}
+
+.uk-dropdown {
+    line-height: 1;
+    font-size: 15px;
+    color: #333;
+    text-transform: none;
+    width: 100%;
+    padding: 0;
+}
+
+.uk-nav-dropdown>li>a:hover, 
+.uk-nav-dropdown>li>a:focus {
+    background: white;
+    font-weight: bold;
+    font-style: italic;
+
+    // &:after {
+    //     content:
+    // }
+}

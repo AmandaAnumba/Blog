@@ -1,0 +1,35 @@
+$footerHeight: 115px;
+#footer {
+    background: #f5f5f5;
+    border-top: 1px solid darken(whitesmoke, 10%);
+    margin-top: 30px;
+    text-align: center;
+    color: #444444;
+    
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: $footerHeight;
+        line-height: $footerHeight;
+        font-size: 10px;
+        letter-spacing: 0.5px;
+    }
+
+    li {
+        display: inline-block;
+        padding: 4px;
+        margin-left: 8px;
+        
+        &:first-child {
+            font-size: 11px;
+        }
+
+        a {
+            text-decoration: none;
+            border-bottom: 1px dotted indianred;
+            padding-bottom: 2px;
+            color: indianred;
+        }
+    }
+}

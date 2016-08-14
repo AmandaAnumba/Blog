@@ -17,7 +17,7 @@ from .models import *
 # ------------------
 CYCLE = Cycle.objects.get(is_current=True)
 DEBUG = settings.DEBUG
-V = '2016-06-04-1350'
+V = '2016-07-24-1350'
 DATA = {
     'page': '',
     'version': V,
@@ -38,15 +38,20 @@ def category(request, cat):
     PAGEDATA['hasPageCSS'] = False
 
     if cat == 'cycle':
-        articles = Article.objects.filter(cycle_article=True).filter(cycle=CYCLE).order_by('-published_date')
+        a = Article.objects.filter(cycle_article=True).filter(cycle=CYCLE).order_by('-published_date')
+        # PAGEDATA['hasPageCSS'] = True
         
+        feature = a[0]
+        articles = a[1:]
+
         return render(request, 
             "blog/CycleDisplay.html", 
             {
                 'data': PAGEDATA,
-                'articles':articles,
-                'cycle':CYCLE,
-                'sub':''
+                'feature': feature,
+                'articles': articles,
+                'cycle': CYCLE,
+                'sub': ''
             }
         )
 
@@ -55,20 +60,24 @@ def category(request, cat):
 
         if category.is_parent:
             subcat = list(category.subcategory.all())
-            articles = Article.objects.filter(
+            a = Article.objects.filter(
                     Q(category__in=subcat) | Q(category=category)
                 ).order_by('-published_date').distinct()
         else:
-            articles = Article.objects.filter(category=category).order_by('-published_date')
+            a = Article.objects.filter(category=category).order_by('-published_date')
             subcat = []
         
+        feature = a[0]
+        articles = a[1:]
+
         return render(request, 
             "blog/TopicDisplay.html", 
             {
                 'data': PAGEDATA,
                 'category': category,
-                'subCategories':subcat,
-                'articles':articles,
+                'subCategories': subcat,
+                'feature': feature,
+                'articles': articles,
                 'sub':''
             }
         )
@@ -100,18 +109,27 @@ def subcategory(request, cat, subcat):
 def read(request, cat, subcat, slug):
     PAGEDATA = {}
     PAGEDATA.update(DATA)
-    PAGEDATA['page'] = cat
-    PAGEDATA['hasPageJS'] = False
-    PAGEDATA['hasPageCSS'] = False
+    PAGEDATA['page'] = 'article'
 
     a = Article.objects.get(slug=slug)
+    u = Member.objects.get(user=a.author)
 
-    if a is not None:
-        if a.article_type == 'regular':
-            return render(request, "blog/ArticleDisplay.html", {'article':a})
+    print(u.avatar)
 
-        elif a.article_type == 'feature':
-            return render(request, "blog/ArticleDisplay.html", {'article':a})
+    if a is not None and u is not None:
+        if a.article_type == 'feature':
+            template = "blog/ArticleDisplay_feauture.html"
+        else:
+            template = "blog/ArticleDisplay_regular.html"
+
+        return render(request, template, 
+            {
+                'data': PAGEDATA, 
+                'article': a,
+                'category' : cat if a.category.name is None else '',
+                'user' : u
+            }
+        ) 
     else:
         print( 'error')
         return redirect(category, cat=cat)
@@ -135,20 +153,25 @@ def index(request):
 @csrf_protect
 @require_http_methods(["POST"])
 def login_view(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    
-    user = authenticate(username=username, password=password)
+    if request.method == 'POST':
+        body = json.loads(request.body.decode('utf-8'))
+        username = body['username']
+        password = body['password']
 
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-            request.session['username'] = username
-            return JsonResponse({ 'success': "success" })
+        user = authenticate(username=username, password=password)
+        u = User.objects.get(username=username)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                request.session['username'] = username
+                return JsonResponse({ 'success': ""})
+            else:
+                return JsonResponse({ 'error': 'Your account has been disabled. Please contact <email> for assistance.'})
         else:
-            return JsonResponse({ 'error': "Account disabled"})
+            return JsonResponse({ 'error': "The username/password combination is incorrect."})
     else:
-        return JsonResponse({ 'error': "Your login information was incorrect. Please try again."})
+        return redirect(index)
 
 
 def logout_view(request):

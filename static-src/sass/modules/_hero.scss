@@ -1,0 +1,72 @@
+@import "../mixins/unstyled-list";
+
+
+$height: 350px;
+.header__hero {
+	height: $height;
+	position: relative;
+}
+
+.hero__background:not(.cycle) {
+	z-index: 0;
+	position: absolute;
+	height: $height;
+	overflow: hidden;
+}
+.hero__background.cycle {
+	@include background-size(cover);
+	background: url(/static/images/cycle.jpg) no-repeat;
+	background-position-y: 21%;
+    height: 100%;
+	position: relative;
+	color: white;
+}
+
+#hero {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.2);
+	color: #E1E1E1;
+}
+.hero-content {
+	@include animation-delay(0.5s);
+	width: 65%;
+	text-shadow: 0 0 15px #6F6F6F;
+	position: absolute;
+    bottom: 20px;
+    left: 45px;
+}
+.hero__title {
+	font-size: 45px;
+	letter-spacing: 1px;
+	margin: 10px 0;
+	line-height: 1;
+}
+.hero__sub-title {
+	font-family: serif;
+	font-size: 14px;
+	letter-spacing: 0.4px;
+	line-height: 1.5;
+}
+.hero__info {
+	margin-top: 12px;
+	border-top: 1px solid white;
+	padding: 12px 0;
+}
+.header__subnav {
+	position: absolute;
+	bottom: -1px*(55px /2px);
+	width: 100%;
+	margin: 0 auto;
+	height: 55px;
+	line-height: 55px;
+
+	ul {
+		width: 80%;
+		background-color: white;
+		@include unstyled-list();
+	}
+}

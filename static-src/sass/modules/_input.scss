@@ -1,0 +1,54 @@
+/**
+ *  
+ * styles for inputs
+ *
+**/
+
+@mixin input($width) {
+    @include box-sizing(border-box);
+    position: relative;
+    padding: 0 13px;
+    height: 40px;
+    width: $width;
+    color: black;
+    border: none;
+    font-size: 12px;
+    font-weight: 300;
+    background-color: transparent;
+    font-family: "Open Sans", Arial, sans-serif;
+    @include transition-property(all);
+    @include transition-duration(.4s);
+    @include transition-timing-function(ease-in-out);
+}
+
+@mixin no-focus() {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+.underlined-input 
+{
+    @include input(100%);
+    margin: 5px 0;
+    border-bottom: 1px solid rgb(231, 231, 231);
+    letter-spacing: 0.5px;
+
+    &:focus 
+    {
+        @include no-focus();
+        border-color: black;
+    }
+
+    &.error 
+    {
+        border-color: #F15555;
+    }
+}
+
+textarea.underlined-input 
+{
+    resize: vertical;
+    height: auto;
+    border: 1px solid rgb(231, 231, 231);
+}

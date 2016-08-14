@@ -1,0 +1,16 @@
+@mixin bkg_image($url, $size) {
+	background-image: url($url);
+	background-position: center;
+	background-repeat: no-repeat;
+	@include background-size($size);
+}
+
+@mixin bkg_img_overlay($img, $color) {
+	background: 
+		linear-gradient(
+			$color, 
+			$color
+		),
+		url($img) no-repeat center center fixed;
+	@include background-size(cover);
+}

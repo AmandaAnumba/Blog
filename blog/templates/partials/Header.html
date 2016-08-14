@@ -1,0 +1,53 @@
+<header class="header">
+    <div id="desktopMenu" class="uk-grid uk-grid-collapse">
+        <div class="header__logo uk-width-2-10">
+            <a href="#">
+                <img src="https://s3.amazonaws.com/chicreptawr/logo.png" alt="Empire Logo" width="40px" />
+                <span>Empire</span>
+            </a>
+        </div>
+
+
+        <div class="header__links uk-width-6-10">
+            <ul>
+                <li><a href="{% url 'category' cat='cycle' %}">Cycle #{{ data.cycle }}</a></li>
+                <li><a href="{% url 'category' cat='inspire' %}">Inspire</a></li>
+                <li><a href="{% url 'category' cat='rise' %}">Rise</a></li>
+                <li><a href="{% url 'category' cat='reign' %}">Reign</a></li>
+                <li>
+                    {% include "partials/Header_dropdown.html" %}
+                </li>
+                <li><a>Top 10</a></li>
+            </ul>
+        </div>
+
+        
+        <div class="header__actions uk-width-2-10 search-collapsed">
+            <div class="header__search">
+                <i class="icon-search"></i>
+                <input type="text" class="underlined-input" name="search" placeholder="Search" autocomplete="off" />
+            </div>
+
+            <div class="header__user">
+                {% if data.loggedIn %}
+                    <div data-uk-dropdown="{mode:'hover'}">
+                        <a href="">{{ username }}&#160;<i class="uk-icon-caret-down"></i></a>
+
+                        <div class="uk-dropdown uk-dropdown-small">
+                            <ul class="uk-nav uk-nav-dropdown">
+                                <li><a href="">Profile</a></li>
+                                <li><a href="">My Dashboard</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li><a href="">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="#loginModal" data-uk-modal>Sign In <span class="space">/</span> Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div id="mobileMenu" class=""></div>
+</header>

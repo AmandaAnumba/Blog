@@ -1,0 +1,100 @@
+<div id="loginModal" class="uk-modal">
+	<div class="uk-modal-dialog uk-text-center">
+		<div class="uk-modal-header uk-clearfix">
+			<a class="uk-modal-close uk-close"></a>
+		</div>
+
+		<div class="uk-modal-body uk-clearfix">
+			<div id="formsWrapper">
+				<section id="login" class="form active" data-position="1" data-ng-controller="LoginController as vm">
+					<h2>Login</h2>
+					
+					<form method="post" name="login" role="form" data-ng-submit="vm.login()" novalidate>
+						{% csrf_token %}
+						
+						{% verbatim %}
+						<div class="uk-form-row animated" data-ng-class="{ shake: login.username.$invalid && login.username.$dirty }">
+							<input type="text" class="underlined-input" placeholder="Username" name="username" data-ng-model="vm.username"  required />
+						</div>
+
+						<div class="uk-form-row animated" data-ng-class="{ shake: login.password.$invalid && login.password.$dirty }">
+							<input type="password" class="underlined-input" placeholder="Password" data-ng-model="vm.password" required />
+							<span class="icon icon-eye toggle-pw-viz"></span>
+						</div>
+						{% endverbatim %}
+						
+						<div class="uk-form-row">
+							<button class="btn-black">Login</button>
+						</div>
+					</form>
+					
+					<div class="form-switcher help-block">
+						<span class="btn-toggle" data-target="#forgot" data-position="2" data-toggle-element=".form" slide-effect>Forgot your password?</span>
+						<span class="divider"> | </span>
+						<span class="btn-toggle" data-target="#register" data-position="3" data-toggle-element=".form" slide-effect>Create an Account</span>
+					</div>
+					
+					<div class="uk-text-muted uk-text-small uk-text-center">Use of this site constitutes acceptance of our <a href="#">User Agreement and Privacy Policy</a>.</div>
+				</section>
+
+
+				<section id="forgot" class="form display-none" data-position="2" data-ng-controller="ResetController as vmreset">
+					<h2>Reset Password</h2>
+					
+					<form method="post" name="reset" role="form" data-ng-submit="vmreset.send()" novalidate>
+						{% csrf_token %}
+
+						<p class="description">Enter your email address below and a link to reset your password will be sent to you.</p>
+						
+						{% verbatim %}
+						<div class="uk-form-row animated" data-ng-class="{ shake: vmreset.email.$invalid && vmreset.email.$dirty }">
+							<input type="email" class="underlined-input" name="email" placeholder="Email Address" data-ng-model="vmreset.email" required />
+						</div>
+						{% endverbatim %}
+
+						<button class="btn-black">Send Email</button>
+					</form>
+
+					<div class="form-switcher help-block">
+						<span class="btn-toggle" data-target="#login" data-position="1" data-toggle-element=".form" slide-effect>Log In</span>
+						<span class="divider"> | </span>
+						<span class="btn-toggle" data-target="#register" data-position="3" data-toggle-element=".form" slide-effect>Create an Account</span>
+					</div>
+				</section>
+
+
+				<section id="register" class="form display-none" data-position="3">
+					<h2>Sign Up</h2>
+					
+					<form data-parsley-validate="true" data-parsley-ui-enabled="true" data-parsley-focus="first" data-parsley-trigger="change" autocomplete="on" method="post">
+						{% csrf_token %}
+						
+						<div class="uk-form-row">
+							<input type="text" class="underlined-input" placeholder="Username" name="username" data-parsley-required="true" data-parsley-minlength="4" data-parsley-required-message="Please enter a username." data-parsley-minlength-message="Your username must be at least 4 characters long and contain no spaces." />
+						</div>
+						
+						<div class="uk-form-row">
+							<input type="email" class="underlined-input" placeholder="Email Address" name="email" data-parsley-required="true" data-parsley-type="email" data-parsley-required-message="Please enter an email address." data-parsley-type-message="Please enter a valid email address." />
+						</div>
+
+						<div class="uk-form-row">
+							<input type="password" class="underlined-input" placeholder="Password" name="password" data-parsley-required="true" data-parsley-required-message="Please enter a password." />
+						</div>
+						
+						<div class="uk-form-row display-none">
+							<input type="password" class="underlined-input" placeholder="Confirm Password" name="confirm" data-parsley-required="true" data-parsley-equalto="#passwordNew" data-parsley-required-message="Please enter a password." data-parsley-equalto-message="Passwords must match." />
+						</div>
+
+						<div class="text-right m-md">
+							<button id="submitRegister" class="btn-black">Sign Up</button>
+						</div>
+					</form>
+
+					<div class="form-switcher">
+						<span class="btn-toggle help-block" data-target="#login" data-position="1" data-toggle-element=".form" slide-effect>Log In</span>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

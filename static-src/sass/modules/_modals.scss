@@ -1,0 +1,121 @@
+@import "input";
+
+/**
+ *  
+ * styles overrides for uikit modal
+ *
+**/
+
+.uk-modal {
+    background: rgba(86, 83, 72, 0.6);
+    
+    .uk-modal-dialog {
+        padding: 30px 55px;
+    }
+    
+    .uk-modal-header {
+        margin: 0;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+    
+    .uk-modal-body {
+        position: relative;
+    }
+
+    .uk-close {
+        width: 35px;
+        height: 35px;
+        position: relative;
+
+        &:before, 
+        &:after {
+            background-color: black;
+            content: "";
+            position: absolute;
+            height: 30px;
+            width: 1px;
+        }
+
+        &:before {
+            @include rotate(45deg);
+        }
+
+        &:after {
+            @include rotate(-45deg);
+            left: 19px;
+        }
+    }
+
+    /* login modal */
+    #formsWrapper {
+        position: relative;
+        height: 310px;
+
+        .form {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        .description {
+            font-weight: 300;
+            font-size: 0.8em;
+            letter-spacing: 0.3px;
+            margin-top: 14px;
+            text-align: center;
+        }
+        
+        .form-switcher {
+            text-align: right;
+        }
+
+        .btn-toggle {
+            cursor: pointer;
+            font-size: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .alert-icon {
+            margin-right: 10px;
+        }
+
+        .icon-arrow-left {
+            font-size: 2.2em;
+            vertical-align: middle;
+        }
+
+        .help-block {
+            color: #333;
+            font-weight: 300;
+            font-size: 12px;
+            letter-spacing: 0.3px;
+            margin: 10px 0;
+            text-align: right;
+
+            &.filled {
+                display: block;
+            }
+            
+            .divider {
+                padding: 0 5px;
+            }
+        }
+
+        .uk-form-row {
+            position: relative;
+
+            .icon-eye {
+                position: absolute;
+                right: 10px;
+                font-size: 23px;
+                opacity: 0.4;
+                line-height: 40px;
+                top: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang='en' ng-app="index">
+<html lang='en' data-ng-app="app">
 	<head>
 		<meta charset="utf-8" />  
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,9 +20,8 @@
         <meta name="apple-mobile-web-app-title" content="Empire Dashboard" />
         <meta name="theme-color" content="#FFFFFF" />
         <meta name="msapplication-navbutton-color" content="#FFFFFF" />
-        <link rel="icon" href="http://media.amandanumba.com/favicon.png" />
-        <link rel="apple-touch-icon" href="http://media.amandanumba.com/favicon.png" />
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Lato:400,300,700|Suranna|Playfair+Display:400,700italic,400italicf' rel='stylesheet' type='text/css' />
+        <link rel="icon" href="https://s3.amazonaws.com/chicreptawr/favicon.png" />
+        <link rel="apple-touch-icon" href="https://s3.amazonaws.com/chicreptawr/favicon.png" />
         <script src="{% static 'js/modernizr.js' %}"></script>
         
 		{% block head %}{% endblock head %}
@@ -33,18 +32,18 @@
 	</head>
 
 	<body>
-		<main>
-			{% block content %}{% endblock content %}
-		</main>
+		{% block content %}{% endblock content %}
 		
+		{% include "partials/Footer.html" %}
+
 		<footer>
-			<script>var log = {% if data.debug %}true{% else %}false{% endif %};</script>
+			<script>var debug = {% if data.debug %}true{% else %}false{% endif %};</script>
 			<script src="{% static 'js/main.js' %}"></script>
 
 			{% block footer %}{% endblock footer %}
 
 			{% if data.hasPageJS %}
-				<script src="{% static 'js/{{ data.page }}.js?v={{ data.version }}' %}"></script>
+				<script src="/static/js/{{ data.page }}.js?v={{ data.version }}"></script>
 			{% endif %}
 		</footer>
 	</body>

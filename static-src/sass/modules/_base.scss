@@ -1,0 +1,10 @@
+@import "compass/css3";
+@import "compass/layout";
+
+/* base styles */
+* { font-family: $main-font }
+
+/* uikit overrides */
+::selection {
+    background: #e0e0e0;
+}
