@@ -1,7 +1,7 @@
 <header class="header">
     <div id="desktopMenu" class="uk-grid uk-grid-collapse">
         <div class="header__logo uk-width-2-10">
-            <a href="#">
+            <a href="/">
                 <img src="https://s3.amazonaws.com/chicreptawr/logo.png" alt="Empire Logo" width="40px" />
                 <span>Empire</span>
             </a>
@@ -13,7 +13,7 @@
                 <li><a href="{% url 'category' cat='cycle' %}">Cycle #{{ data.cycle }}</a></li>
                 <li><a href="{% url 'category' cat='inspire' %}">Inspire</a></li>
                 <li><a href="{% url 'category' cat='rise' %}">Rise</a></li>
-                <li><a href="{% url 'category' cat='reign' %}">Reign</a></li>
+                {# <li><a href="{% url 'category' cat='reign' %}">Reign</a></li> #}
                 <li>
                     {% include "partials/Header_dropdown.html" %}
                 </li>

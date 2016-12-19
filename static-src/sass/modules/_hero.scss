@@ -7,18 +7,19 @@ $height: 350px;
 	position: relative;
 }
 
-.hero__background:not(.cycle) {
+.hero__background {
+	@include background-size(cover);
 	z-index: 0;
 	position: absolute;
 	height: $height;
 	overflow: hidden;
+	width: 100%;
+	background-repeat: none;
 }
 .hero__background.cycle {
-	@include background-size(cover);
-	background: url(/static/images/cycle.jpg) no-repeat;
+	background-image: url(/static/images/cycle.jpg);
 	background-position-y: 21%;
-    height: 100%;
-	position: relative;
+	// position: relative;
 	color: white;
 }
 

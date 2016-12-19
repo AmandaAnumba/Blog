@@ -1,0 +1,49 @@
+{% extends "blog/_BaseBlogTemplate.html" %}
+
+
+{% block title %}Cycle #{{ data.cycle }}{% endblock %}
+
+
+{% block cycleHeader %}
+    <section class="header__hero">
+        <div class="hero__background cycle"></div>
+        <div id="hero">
+            <div class="hero-content cycle animated fadeInUp">
+                <div class="hero__title">{{ data.cycleTitle }}</div>
+                <div class="hero__sub-title">This Cycle's Topic: Managing our self identity in a world where we're constantly reminded that we are worthless.</div>
+            </div>
+        </div>
+    </section>
+{% endblock cycleHeader %}
+
+
+{% block addtlContent %}
+    {% if articles %}
+    <div id="packery">
+        <div id="articlesList" packery>
+            {% for i in articles %}
+                <article class="article {{ i.article_type }}">
+                    <a href="{% url 'read' cat='cycle' slug=i.slug %}">
+                        <div class="article__image" style="background-image: url({{ i.feature_image }});"></div>
+                        
+                        <div class="article__overlay">
+                            <div class="article__info">
+                                <div class="article__title">{{ i.title }}</div>
+                                
+                                {% if i.article_type == 'feature' %}
+                                    <div class="article__description">{{ i.description }}</div>
+                                {% endif %}
+
+                                <div class="article__details uk-clearfix">
+                                    <div class="article__author"><span class="italic">by </span> {{ i.author.first_name|escape }} {{ i.author.last_name|escape }}</div>
+                                    <div class="article__date">{{ i.published_date }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock addtlContent %}

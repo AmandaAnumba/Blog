@@ -1,7 +1,9 @@
 <div id="loginModal" class="uk-modal">
 	<div class="uk-modal-dialog uk-text-center">
 		<div class="uk-modal-header uk-clearfix">
-			<a class="uk-modal-close uk-close"></a>
+			<div class="uk-modal-close">
+				<span class="icon icon-cross"></span>
+			</div>
 		</div>
 
 		<div class="uk-modal-body uk-clearfix">
@@ -24,7 +26,7 @@
 						{% endverbatim %}
 						
 						<div class="uk-form-row">
-							<button class="btn-black">Login</button>
+							<button class="btn-black" data-ng-click="vm.login()">Continue</button>
 						</div>
 					</form>
 					

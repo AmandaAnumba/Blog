@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^logout/$', views.logout_view, name="logout"),
     url(r'^(?P<cat>\w+)/$', views.category, name="category"),
     url(r'^(?P<cat>\w+)/(?P<subcat>\w+)/$', views.subcategory, name="subcategory"),
-    url(r'^(?P<cat>\w+)/(?P<slug>[\w-]+)/$', views.read, {'subcat':'none'}, name="read"),
-    url(r'^(?P<cat>\w+)/(?P<subcat>\w+)/(?P<slug>[\w-]+)/$', views.read, name="read"),
+    url(r'^(?P<author>\w+\D+)/(?P<slug>[\w-]+)/$', views.read, name="read"),
+    # url(r'^(?P<cat>\w+)/(?P<slug>[\w-]+)/$', views.read, {'subcat':'none'}, name="read"),
+    # url(r'^(?P<cat>\w+)/(?P<subcat>\w+)/(?P<slug>[\w-]+)/$', views.read, name="read"),
 ]
